@@ -56,6 +56,22 @@ cp -r themes/makabaka/exampleSite/* .
 
 Then edit `hugo.toml`, replace `static/img/avatar.svg`, and update/remove the sample posts under `content/posts/` to make it your own.
 
+## Uninstallation
+
+To completely remove this theme from your site (submodule and git's internal cache):
+
+```bash
+git submodule deinit -f themes/makabaka
+git rm -f themes/makabaka
+rm -rf .git/modules/themes/makabaka
+```
+
+- `git submodule deinit -f themes/makabaka` — unregisters the submodule.
+- `git rm -f themes/makabaka` — removes it from the index (also cleans up the old entry in `.gitmodules`).
+- `rm -rf .git/modules/themes/makabaka` — clears git's internal cached submodule data.
+
+Don't forget to remove `theme = "makabaka"` from `hugo.toml` as well.
+
 ## Configuration
 
 In your site's `hugo.toml`:
