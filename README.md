@@ -12,6 +12,16 @@ A low-key, Hyde-inspired resume-style Hugo theme with tree-structured tags, a bi
 
 - Hugo **extended** v0.112.0 or later (uses Hugo Pipes for SCSS).
 
+## Demo
+
+A full demo site (avatar, bio, and sample posts) lives in [`exampleSite/`](exampleSite). To preview it locally:
+
+```bash
+git clone https://github.com/Rexturnull/hugo-theme-makabaka.git
+cd hugo-theme-makabaka/exampleSite
+hugo server --themesDir ../..
+```
+
 ## Installation
 
 Add this theme as a git submodule in your Hugo site:
@@ -36,11 +46,27 @@ git add themes/makabaka
 git commit -m "Pin makabaka theme to v1.0.0"
 ```
 
+### Starting from the demo content
+
+If you want your new site to look exactly like the demo out of the box (same avatar, bio, and sample posts), copy the example site content into your site's root **after** adding the submodule:
+
+```bash
+cp -r themes/makabaka/exampleSite/* .
+```
+
+Then edit `hugo.toml`, replace `static/img/avatar.svg`, and update/remove the sample posts under `content/posts/` to make it your own.
+
 ## Configuration
 
 In your site's `hugo.toml`:
 
 ```toml
+theme = "makabaka"
+
+[params]
+    mainSections = ["posts"]
+    description = "A short site description"
+
 [params.author]
     name = "Your Name"
     title = "Your Title"
@@ -53,6 +79,23 @@ In your site's `hugo.toml`:
     email = "you@example.com"
     linkedin = "https://www.linkedin.com/in/your-handle"
     twitter = "https://x.com/your-handle"
+
+[[menu.main]]
+    name = "Home"
+    url = "/"
+    weight = 10
+[[menu.main]]
+    name = "Posts"
+    url = "/posts/"
+    weight = 20
+[[menu.main]]
+    name = "Tags"
+    url = "/tags/"
+    weight = 30
+[[menu.main]]
+    name = "About"
+    url = "/about/"
+    weight = 40
 ```
 
 ## Writing posts
@@ -77,6 +120,10 @@ Write your content here (Markdown supported).
 
 - Cover image and body images live in the **same folder** as `index.md`.
 - Folder structure drives the tree/category hierarchy (browsable under "By Topic"); `tags` are flat, cross-cutting keywords.
+
+## License
+
+MIT
 
 ## License
 
