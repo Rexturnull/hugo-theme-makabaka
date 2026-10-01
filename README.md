@@ -124,7 +124,3 @@ Write your content here (Markdown supported).
 ## License
 
 MIT
-
-## License
-
-MIT
