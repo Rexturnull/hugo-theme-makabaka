@@ -17,8 +17,8 @@ A low-key, Hyde-inspired resume-style Hugo theme with tree-structured tags, a bi
 A full demo site (avatar, bio, and sample posts) lives in [`exampleSite/`](exampleSite). To preview it locally:
 
 ```bash
-git clone https://github.com/Rexturnull/hugo-theme-makabaka.git
-cd hugo-theme-makabaka/exampleSite
+git clone https://github.com/Rexturnull/hugo-theme-makabaka.git makabaka
+cd makabaka/exampleSite
 hugo server --themesDir ../..
 ```
 
