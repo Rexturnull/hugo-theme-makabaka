@@ -1,0 +1,29 @@
+{{ $section := .section }}
+{{ $level := .level }}
+<ul class="topic-tree{{ if eq $level 0 }} topic-tree--root{{ end }}">
+  {{ range $section.Sections.ByTitle }}
+    {{ $hasContent := or (gt (len .Sections) 0) (gt (len .RegularPages) 0) }}
+    <li class="topic-tree__item">
+      <div class="topic-tree__row"{{ if $hasContent }} data-collapsed="true"{{ end }}>
+        {{ if $hasContent }}
+        <button type="button" class="topic-tree__toggle">&#9656;</button>
+        {{ else }}
+        <span class="topic-tree__toggle"></span>
+        {{ end }}
+        <a class="topic-tree__link" href="{{ .RelPermalink }}" data-topic-target="{{ .RelPermalink }}">{{ .Title }}</a>
+        <span class="topic-tree__count">({{ len .RegularPagesRecursive }})</span>
+      </div>
+      {{ if $hasContent }}
+        {{ partial "section-tree.html" (dict "section" . "level" (add $level 1)) }}
+      {{ end }}
+    </li>
+  {{ end }}
+  {{ range $section.RegularPages.ByTitle }}
+    <li class="topic-tree__item topic-tree__item--leaf">
+      <div class="topic-tree__row">
+        <span class="topic-tree__toggle"></span>
+        <a class="topic-tree__link" href="{{ .RelPermalink }}">{{ .Title }}</a>
+      </div>
+    </li>
+  {{ end }}
+</ul>

@@ -1,0 +1,34 @@
+{{ define "main" }}
+{{ if eq .Type "posts" }}
+  {{ partial "breadcrumb.html" . }}
+  {{ partial "cover.html" . }}
+  <header class="article-header">
+    <h1 class="article-header__title">{{ .Title }}</h1>
+    <div class="article-header__meta">
+      {{ $words := countwords .Content }}
+      {{ $minutes := math.Max 1 (math.Ceil (div $words 200.0)) }}
+      {{ i18n "postedOn" }} {{ .Date.Format "2006-01-02" }} &middot; {{ $minutes }} {{ i18n "minuteRead" }}
+    </div>
+    {{ with .Params.tags }}
+    <ul class="tag-list">
+      {{ range . }}
+      <li><a class="tag-chip" href="{{ "/tags/" | relLangURL }}{{ . | urlize }}/">{{ . }}</a></li>
+      {{ end }}
+    </ul>
+    {{ end }}
+  </header>
+  <div class="article-body">
+    {{ .Content }}
+  </div>
+  <footer class="article-footer">
+    {{ partial "related-posts.html" . }}
+    <nav class="post-pager">
+      {{ with .PrevInSection }}<a href="{{ .RelPermalink }}">&larr; {{ i18n "previousPost" }}: {{ .Title }}</a>{{ end }}
+      {{ with .NextInSection }}<a href="{{ .RelPermalink }}">{{ i18n "nextPost" }}: {{ .Title }} &rarr;</a>{{ end }}
+    </nav>
+  </footer>
+{{ else }}
+  <h1>{{ .Title }}</h1>
+  {{ .Content }}
+{{ end }}
+{{ end }}

@@ -1,0 +1,24 @@
+<aside class="sidebar-profile">
+  {{ with site.Params.author.avatar }}
+  <img class="sidebar-profile__avatar" src="{{ . | relURL }}" alt="{{ site.Params.author.name }}">
+  {{ end }}
+  <h1 class="sidebar-profile__name">{{ site.Params.author.name }}</h1>
+  {{ with site.Params.author.title }}<p class="sidebar-profile__title">{{ . }}</p>{{ end }}
+  {{ with site.Params.author.bio }}<p class="sidebar-profile__bio">{{ . }}</p>{{ end }}
+
+  <div class="sidebar-profile__social">
+    <ul class="sidebar-profile__social-list">
+      {{ with site.Params.social.github }}<li><a class="nav-pill" href="{{ . }}" target="_blank" rel="me noopener">{{ partial "icon.html" "github" }}<span>GitHub</span></a></li>{{ end }}
+      {{ with site.Params.social.email }}<li><a class="nav-pill" href="mailto:{{ . }}">{{ partial "icon.html" "email" }}<span>Email</span></a></li>{{ end }}
+      {{ with site.Params.social.linkedin }}<li><a class="nav-pill" href="{{ . }}" target="_blank" rel="me noopener">{{ partial "icon.html" "linkedin" }}<span>LinkedIn</span></a></li>{{ end }}
+      {{ with site.Params.social.twitter }}<li><a class="nav-pill" href="{{ . }}" target="_blank" rel="me noopener">{{ partial "icon.html" "twitter" }}<span>X</span></a></li>{{ end }}
+      {{ with site.Params.author.resume }}<li><a class="nav-pill" href="{{ . | relURL }}" target="_blank" rel="noopener">{{ partial "icon.html" "document" }}<span>{{ i18n "downloadResume" }}</span></a></li>{{ end }}
+    </ul>
+  </div>
+
+  <nav class="sidebar-nav">
+    {{ range site.Menus.main }}
+    <a class="nav-pill sidebar-nav__item{{ if $.IsMenuCurrent "main" . }} is-active{{ end }}" href="{{ .URL | relLangURL }}">{{ .Name }}</a>
+    {{ end }}
+  </nav>
+</aside>

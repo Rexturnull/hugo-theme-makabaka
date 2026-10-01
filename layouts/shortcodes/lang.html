@@ -1,0 +1,4 @@
+{{ $lang := .Get 0 }}
+<div class="lang-{{ $lang }}">
+{{ .Inner | markdownify }}
+</div>

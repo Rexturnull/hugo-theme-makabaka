@@ -1,0 +1,138 @@
+// Full-width article reading view (no profile sidebar)
+.article-topnav {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid $color-border;
+  font-size: .9rem;
+}
+.article-topnav a {
+  color: $color-text;
+}
+.article-topnav a:hover {
+  background-color: $hover-bg-light;
+  color: $color-text-strong;
+}
+.article-topnav__home {
+  font-weight: 600;
+  color: $color-text-strong;
+}
+
+.article-cover {
+  width: 100%;
+  max-height: 22rem;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+.article-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.breadcrumb {
+  font-size: .85rem;
+  color: $color-muted;
+  margin-bottom: .75rem;
+}
+.breadcrumb a {
+  color: $color-muted;
+  text-decoration: none;
+}
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.article-header {
+  margin-bottom: 2rem;
+}
+.article-header__title {
+  font-size: 2rem;
+  margin: 0 0 .5rem;
+}
+.article-header__meta {
+  color: $color-muted;
+  font-size: .9rem;
+}
+
+.article-body {
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+.article-body img {
+  max-width: 100%;
+}
+.article-body pre {
+  background-color: $color-code-bg;
+  padding: 1rem;
+  overflow-x: auto;
+  border-radius: .35rem;
+}
+.article-body code {
+  font-family: $font-mono;
+  background-color: $color-code-bg;
+  padding: .1rem .3rem;
+  border-radius: .2rem;
+}
+.article-body pre code {
+  background: none;
+  padding: 0;
+}
+
+.article-footer {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid $color-border;
+}
+
+.post-pager {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+  gap: 1rem;
+}
+.post-pager a {
+  color: $color-text-strong;
+  text-decoration: none;
+  font-size: .9rem;
+}
+.post-pager a:hover {
+  text-decoration: underline;
+}
+
+.related-posts {
+  margin-top: 1.5rem;
+}
+.related-posts h2 {
+  font-size: 1.1rem;
+}
+.related-posts ul {
+  padding-left: 1.1rem;
+}
+
+// About page zh/en toggle: Chinese shown by default
+body.lang-zh .lang-en { display: none; }
+body.lang-en .lang-zh { display: none; }
+
+.lang-toggle {
+  display: inline-flex;
+  border: 1px solid $color-border;
+  border-radius: .25rem;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+.lang-toggle button {
+  background: $color-bg;
+  border: none;
+  padding: .35rem .8rem;
+  font-size: .8rem;
+  cursor: pointer;
+  color: $color-text;
+}
+.lang-toggle button.is-active {
+  background-color: $color-text-strong;
+  color: #fff;
+}

@@ -1,0 +1,11 @@
+{{ $related := where (.Site.RegularPages.Related .) "Type" "posts" }}
+{{ with first 5 $related }}
+<div class="related-posts">
+  <h2>{{ i18n "relatedPosts" }}</h2>
+  <ul>
+    {{ range . }}
+    <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+    {{ end }}
+  </ul>
+</div>
+{{ end }}

@@ -1,0 +1,9 @@
+name = "makabaka"
+license = "MIT"
+licenselink = "https://github.com/MaKaBaKa/makabaka/blob/main/LICENSE"
+description = "A low-key, Hyde-inspired resume-style theme with tree-structured tags."
+homepage = "https://github.com/MaKaBaKa"
+min_version = "0.112.0"
+
+[author]
+  name = "MaKaBaKa"

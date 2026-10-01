@@ -1,0 +1,15 @@
+<article class="post-card">
+  {{ with .Params.cover }}
+  <div class="post-card__cover"><img src="{{ partial "cover-url.html" (dict "page" $ "file" .) }}" alt="" loading="lazy"></div>
+  {{ end }}
+  <div class="post-card__body">
+    <h3 class="post-card__title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+    <div class="post-card__meta">{{ .Date.Format "2006-01-02" }}</div>
+    {{ with .Params.tags }}
+    <ul class="tag-list">
+      {{ range . }}<li><a class="tag-chip" href="{{ "/tags/" | relLangURL }}{{ . | urlize }}/">{{ . }}</a></li>{{ end }}
+    </ul>
+    {{ end }}
+    <p class="post-card__summary">{{ .Summary | plainify | truncate 120 }}</p>
+  </div>
+</article>

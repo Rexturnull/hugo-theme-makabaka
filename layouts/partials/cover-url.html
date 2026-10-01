@@ -1,0 +1,11 @@
+{{/* Resolves a `cover` front-matter value to a URL: a page-bundle resource
+     (co-located with the post) takes priority, falling back to a path under static/. */}}
+{{ $page := .page }}
+{{ $file := .file }}
+{{ $url := "" }}
+{{ with $page.Resources.Get $file }}
+  {{ $url = .RelPermalink }}
+{{ else }}
+  {{ $url = $file | relURL }}
+{{ end }}
+{{ return $url }}

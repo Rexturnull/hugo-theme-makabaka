@@ -1,0 +1,18 @@
+{{ define "main" }}
+<h1>{{ i18n "tags" }}</h1>
+<p class="filter-hint">{{ i18n "filterHint" }}</p>
+<div class="tag-filter" data-tag-filter>
+  <div class="tag-filter__chips">
+    {{ range .Site.Taxonomies.tags.Alphabetical }}
+    <button type="button" class="tag-chip" data-tag="{{ .Page.Title | lower }}">{{ .Page.Title }} <span class="tag-chip__count">{{ .Count }}</span></button>
+    {{ end }}
+    <button type="button" class="tag-filter__clear" data-tag-clear hidden>{{ i18n "clearFilter" }}</button>
+  </div>
+  <div class="post-list" data-tag-results>
+    {{ range (where site.RegularPages "Type" "posts").ByDate.Reverse }}
+    <div class="post-list__item" data-tags="{{ delimit .Params.tags "," | lower }}">{{ partial "article-card.html" . }}</div>
+    {{ end }}
+  </div>
+  <p class="post-search__empty" data-tag-empty hidden>{{ i18n "noMatchingPosts" }}</p>
+</div>
+{{ end }}

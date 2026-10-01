@@ -1,0 +1,9 @@
+{{ define "main" }}
+<div class="lang-toggle" data-lang-toggle>
+  <button type="button" data-lang="zh" class="is-active">{{ i18n "switchToChinese" }}</button>
+  <button type="button" data-lang="en">{{ i18n "switchToEnglish" }}</button>
+</div>
+<div class="article-body">
+  {{ .Content }}
+</div>
+{{ end }}

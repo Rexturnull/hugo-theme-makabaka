@@ -1,0 +1,91 @@
+// Resume-style profile sidebar (home page only; hidden on single article pages)
+.sidebar-profile {
+  padding: 2.5rem 1.5rem;
+  background-color: $color-sidebar-bg;
+  color: $color-sidebar-fg;
+  text-align: center;
+
+  @media (min-width: $breakpoint-md) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: $sidebar-width;
+    overflow-y: auto;
+  }
+}
+
+.sidebar-profile__avatar {
+  display: block;
+  width: 7rem;
+  height: 7rem;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 1rem;
+}
+
+.sidebar-profile__name {
+  color: $color-sidebar-fg-strong;
+  font-size: 1.75rem;
+  margin: 0 0 .25rem;
+}
+
+.sidebar-profile__title {
+  font-size: .9rem;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  margin: 0 0 1rem;
+}
+
+.sidebar-profile__bio {
+  font-size: .95rem;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+.sidebar-profile__social {
+  margin-bottom: 1.5rem;
+}
+
+.sidebar-profile__social-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: .25rem;
+}
+.sidebar-profile__social-list li {
+  width: 100%;
+}
+.sidebar-profile__social-list a {
+  display: flex;
+  width: 100%;
+  color: $color-sidebar-fg-strong;
+  font-size: .85rem;
+}
+.sidebar-profile__social-list a:hover {
+  background-color: $hover-bg-dark;
+}
+.sidebar-profile__social-list .icon {
+  flex-shrink: 0;
+}
+
+.sidebar-nav {
+  margin-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, .15);
+  padding-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: .25rem;
+}
+.sidebar-nav__item {
+  display: flex;
+  width: 100%;
+  color: $color-sidebar-fg;
+}
+.sidebar-nav__item:hover,
+.sidebar-nav__item.is-active {
+  color: $color-sidebar-fg-strong;
+  background-color: $hover-bg-dark;
+}

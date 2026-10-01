@@ -1,0 +1,71 @@
+{{ define "main" }}
+<h1>{{ .Title }}</h1>
+{{ with .Content }}<div class="article-body">{{ . }}</div>{{ end }}
+{{ if .Parent }}{{ partial "breadcrumb.html" . }}{{ end }}
+
+{{ $hasChildren := gt (len .Sections) 0 }}
+{{ $isRoot := .Parent.IsHome }}
+
+{{ if $isRoot }}
+<div class="tabs" data-tabs>
+  <div class="tabs__bar">
+    <button type="button" class="tab nav-pill is-active" data-tab="all">{{ i18n "tabAllPosts" }}</button>
+    {{ if $hasChildren }}
+    <button type="button" class="tab nav-pill" data-tab="topic">{{ i18n "tabByTopic" }}</button>
+    {{ end }}
+  </div>
+
+  <section class="tab-panel is-active" data-panel="all">
+    <div class="post-search">
+      <input type="search" class="post-search__input" data-post-search placeholder="{{ i18n "searchByTitle" }}" aria-label="{{ i18n "searchByTitle" }}">
+    </div>
+    <div class="post-list" data-post-list>
+      {{ range .RegularPagesRecursive.ByDate.Reverse }}
+        <div class="post-list__item" data-title="{{ .Title | lower }}">{{ partial "article-card.html" . }}</div>
+      {{ else }}
+        <p>{{ i18n "noPostsYet" }}</p>
+      {{ end }}
+    </div>
+    <p class="post-search__empty" data-search-empty hidden>{{ i18n "noMatchingPosts" }}</p>
+  </section>
+
+  {{ if $hasChildren }}
+  <section class="tab-panel" data-panel="topic">
+    <div class="topic-explorer" data-topic-explorer>
+      {{ partial "section-tree.html" (dict "section" . "level" 0) }}
+      <button type="button" class="tag-filter__clear" data-topic-clear hidden>{{ i18n "clearFilter" }}</button>
+      <div class="post-list" data-topic-filtered-list hidden>
+        {{ range .RegularPagesRecursive.ByDate.Reverse }}
+          {{ $sections := slice }}
+          {{ range .Ancestors }}{{ $sections = $sections | append .RelPermalink }}{{ end }}
+          <div class="post-list__item" data-sections="{{ delimit $sections "," }}">{{ partial "article-card.html" . }}</div>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+  {{ end }}
+</div>
+
+{{ else }}
+
+{{ if $hasChildren }}
+<nav class="subfolder-nav">
+  <h2>{{ i18n "browseByTopic" }}</h2>
+  <ul class="subfolder-list">
+    {{ range .Sections.ByTitle }}
+    <li><a href="{{ .RelPermalink }}">{{ .Title }}</a><span class="subfolder-list__count">{{ len .RegularPagesRecursive }}</span></li>
+    {{ end }}
+  </ul>
+</nav>
+{{ end }}
+
+<div class="post-list">
+  {{ range .RegularPagesRecursive.ByDate.Reverse }}
+    {{ partial "article-card.html" . }}
+  {{ else }}
+    <p>{{ i18n "noPostsYet" }}</p>
+  {{ end }}
+</div>
+
+{{ end }}
+{{ end }}

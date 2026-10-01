@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Locale | default "zh-TW" }}">
+<head>
+  {{ partial "head.html" . }}
+</head>
+<body class="lang-zh">
+  {{ $isArticle := and (eq .Kind "page") (eq .Type "posts") }}
+  {{ if not $isArticle }}
+    {{ partial "sidebar-profile.html" . }}
+  {{ end }}
+  <div class="layout{{ if $isArticle }} layout--article{{ end }}">
+    <main class="content{{ if $isArticle }} content--wide{{ else if .IsHome }} content--home{{ end }}">
+      {{ if $isArticle }}{{ partial "article-topnav.html" . }}{{ end }}
+      {{ block "main" . }}{{ end }}
+    </main>
+    {{ partial "footer.html" . }}
+  </div>
+  {{ $treeJS := resources.Get "js/tree-collapse.js" | resources.Minify | resources.Fingerprint }}
+  <script src="{{ $treeJS.RelPermalink }}" integrity="{{ $treeJS.Data.Integrity }}" defer></script>
+  {{ if eq .Layout "about" }}
+    {{ $aboutJS := resources.Get "js/about-toggle.js" | resources.Minify | resources.Fingerprint }}
+    <script src="{{ $aboutJS.RelPermalink }}" integrity="{{ $aboutJS.Data.Integrity }}" defer></script>
+  {{ end }}
+</body>
+</html>

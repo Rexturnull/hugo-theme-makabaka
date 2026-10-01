@@ -1,0 +1,21 @@
+{{ define "main" }}
+<div class="home-grid">
+  <section class="home-main">
+    <h1>{{ i18n "recentPosts" }}</h1>
+    {{ $posts := where site.RegularPages "Type" "posts" }}
+    {{ range first 6 $posts.ByDate.Reverse }}
+      {{ partial "article-card.html" . }}
+    {{ else }}
+      <p>{{ i18n "noPostsYet" }}</p>
+    {{ end }}
+  </section>
+  <aside class="home-aside">
+    <h2>{{ i18n "browseByTag" }}</h2>
+    <ul class="tag-list">
+      {{ range .Site.Taxonomies.tags.Alphabetical }}
+      <li><a href="{{ .Page.RelPermalink }}">{{ .Page.Title }} <span class="tag-list__count">{{ .Count }}</span></a></li>
+      {{ end }}
+    </ul>
+  </aside>
+</div>
+{{ end }}

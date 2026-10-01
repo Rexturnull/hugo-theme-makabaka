@@ -1,0 +1,6 @@
+<nav class="breadcrumb">
+  {{ range .Ancestors.Reverse }}
+    <a href="{{ .RelPermalink }}">{{ .Title }}</a> /
+  {{ end }}
+  <span>{{ .Title }}</span>
+</nav>

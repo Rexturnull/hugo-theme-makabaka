@@ -1,0 +1,91 @@
+@import "variables";
+
+* { box-sizing: border-box; }
+
+html {
+  font-family: $font-sans;
+  font-size: 16px;
+}
+@media (min-width: $breakpoint-lg) {
+  html { font-size: 18px; }
+}
+
+body {
+  margin: 0;
+  color: $color-text;
+  background-color: $color-bg;
+}
+
+a {
+  color: $color-link;
+}
+a:hover,
+a:focus {
+  color: $color-link-hover;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: $color-text-strong;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.layout {
+  @media (min-width: $breakpoint-md) {
+    margin-left: $sidebar-width;
+  }
+}
+
+.layout--article {
+  margin-left: 0;
+}
+
+.content {
+  max-width: $content-max-width;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 4rem;
+}
+
+.content--wide {
+  max-width: 48rem;
+}
+
+// Homepage content: centered like everything else, but wide enough that the
+// gap to the sidebar stays modest while still leaving room for two columns.
+.content--home {
+  max-width: $content-home-max-width;
+  margin: 0 auto;
+}
+
+.site-footer {
+  color: $color-muted;
+  font-size: .8rem;
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.home-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  @media (min-width: $breakpoint-md) {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 3rem;
+  }
+}
+.home-main { flex: 1; min-width: 0; }
+.home-aside {
+  flex: 0 0 16rem;
+
+  @media (min-width: $breakpoint-md) {
+    position: sticky;
+    top: 2rem;
+  }
+}
+
+@import "sidebar";
+@import "tree";
+@import "card";
+@import "article";
