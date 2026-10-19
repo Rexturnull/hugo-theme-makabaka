@@ -1,0 +1,13 @@
+{{/* Floating right-rail table of contents, built from Hugo's auto-generated heading anchors. */}}
+{{ if .Fragments.Headings }}
+<aside class="article-toc" data-toc>
+  <div class="article-toc__header">
+    <span class="article-toc__title">{{ .Title }}</span>
+    <button type="button" class="article-toc__toggle" data-toc-toggle aria-label="{{ i18n "tableOfContents" }}">&#9662;</button>
+  </div>
+  <div class="article-toc__body" data-toc-body>
+    {{ .TableOfContents }}
+    <a href="#" class="article-toc__top" data-toc-top>&#8593; {{ i18n "backToTop" }}</a>
+  </div>
+</aside>
+{{ end }}

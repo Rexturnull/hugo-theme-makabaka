@@ -47,7 +47,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .content--wide {
-  max-width: 48rem;
+  max-width: $article-content-width;
 }
 
 // Homepage content: centered like everything else, but wide enough that the

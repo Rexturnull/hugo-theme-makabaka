@@ -21,8 +21,10 @@
 }
 
 .article-cover {
-  width: 100%;
-  max-height: 22rem;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  aspect-ratio: 7 / 5;
   overflow: hidden;
   margin-bottom: 1.5rem;
 }
@@ -63,7 +65,28 @@
   line-height: 1.7;
 }
 .article-body img {
+  display: block;
   max-width: 100%;
+  margin: 1.5rem auto;
+}
+.article-body blockquote {
+  margin: 1.5rem 0;
+  padding: .1rem 1.25rem;
+  border-left: 3px solid $color-border;
+  color: $color-muted;
+  font-style: italic;
+}
+.article-body blockquote p {
+  margin: .75rem 0;
+}
+.article-body blockquote p:last-child {
+  margin-bottom: 0;
+}
+.article-body blockquote cite {
+  display: block;
+  font-style: normal;
+  font-size: .9rem;
+  text-align: right;
 }
 .article-body pre {
   background-color: $color-code-bg;
@@ -80,6 +103,100 @@
 .article-body pre code {
   background: none;
   padding: 0;
+}
+.article-body table {
+  width: 100%;
+  margin: 1.5rem 0;
+  border-collapse: collapse;
+  font-size: .95rem;
+}
+.article-body th,
+.article-body td {
+  padding: .6rem .8rem;
+  border: 1px solid $color-border;
+  text-align: left;
+}
+.article-body th {
+  background-color: $color-tag-bg;
+  color: $color-text-strong;
+  font-weight: 600;
+}
+.article-body tr:nth-child(even) td {
+  background-color: $color-code-bg;
+}
+
+// Floating right-rail TOC, anchored to the post block's own right edge
+// (content--wide is centered via margin: auto) rather than the viewport edge.
+.article-toc {
+  display: none;
+
+  @media (min-width: $breakpoint-xl) {
+    display: block;
+    position: fixed;
+    top: 6rem;
+    left: calc(50% + #{$article-content-width} / 2 + 2rem);
+    width: 14rem;
+    max-height: calc(100vh - 8rem);
+    overflow-y: auto;
+    font-size: .85rem;
+  }
+}
+.article-toc__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .5rem;
+}
+.article-toc__title {
+  font-weight: 600;
+  color: $color-text-strong;
+  font-size: .8rem;
+  text-transform: uppercase;
+  letter-spacing: .03em;
+}
+.article-toc__toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: $color-muted;
+  font-size: .7rem;
+  padding: .2rem;
+  line-height: 1;
+}
+.article-toc__toggle:hover {
+  color: $color-text-strong;
+}
+.article-toc__body {
+  margin-top: .6rem;
+}
+.article-toc.is-collapsed .article-toc__body {
+  display: none;
+}
+.article-toc ul {
+  list-style: none;
+  margin: 0;
+  padding-left: 0;
+}
+.article-toc ul ul {
+  padding-left: .9rem;
+}
+.article-toc li {
+  margin: .3rem 0;
+}
+.article-toc a {
+  display: block;
+  color: $color-muted;
+  text-decoration: none;
+}
+.article-toc a:hover {
+  color: $color-text-strong;
+}
+.article-toc__top {
+  margin-top: 1.5rem;
+  padding-top: .6rem;
+  border-top: 1px solid $color-border;
+  font-size: .8rem;
+  text-align: center;
 }
 
 .article-footer {

@@ -13,10 +13,15 @@
       {{ if $isArticle }}{{ partial "article-topnav.html" . }}{{ end }}
       {{ block "main" . }}{{ end }}
     </main>
+    {{ if $isArticle }}{{ partial "toc.html" . }}{{ end }}
     {{ partial "footer.html" . }}
   </div>
   {{ $treeJS := resources.Get "js/tree-collapse.js" | resources.Minify | resources.Fingerprint }}
   <script src="{{ $treeJS.RelPermalink }}" integrity="{{ $treeJS.Data.Integrity }}" defer></script>
+  {{ if $isArticle }}
+    {{ $tocJS := resources.Get "js/toc-collapse.js" | resources.Minify | resources.Fingerprint }}
+    <script src="{{ $tocJS.RelPermalink }}" integrity="{{ $tocJS.Data.Integrity }}" defer></script>
+  {{ end }}
   {{ if eq .Layout "about" }}
     {{ $aboutJS := resources.Get "js/about-toggle.js" | resources.Minify | resources.Fingerprint }}
     <script src="{{ $aboutJS.RelPermalink }}" integrity="{{ $aboutJS.Data.Integrity }}" defer></script>
