@@ -20,6 +20,7 @@
   <div class="article-body">
     {{ .Content }}
   </div>
+  {{ partial "comments.html" . }}
   <footer class="article-footer">
     {{ partial "related-posts.html" . }}
     <nav class="post-pager">

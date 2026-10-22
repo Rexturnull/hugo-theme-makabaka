@@ -4,3 +4,4 @@
 {{ with .Description | default site.Params.description }}<meta name="description" content="{{ . }}">{{ end }}
 {{ $style := resources.Get "scss/main.scss" | css.Sass | resources.Minify | resources.Fingerprint }}
 <link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}">
+{{ partial "google_analytics.html" . }}
